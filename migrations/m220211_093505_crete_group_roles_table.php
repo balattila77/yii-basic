@@ -15,7 +15,7 @@ class m220211_093505_crete_group_roles_table extends Migration
         $this->createTable('group_roles', [
             'id' => $this->primaryKey()->unsigned(),
             'group_id' => $this->integer()->unsigned()->notNull(),
-            'controller' => $this->string(64)->key()->notNull(),
+            'controller' => $this->string(64)->notNull(),
             'create' => $this->boolean()->defaultValue(false),
             'read' => $this->boolean()->defaultValue(false),
             'update' => $this->boolean()->defaultValue(false),
@@ -29,6 +29,12 @@ class m220211_093505_crete_group_roles_table extends Migration
             'group',
             'id',
             'CASCADE'
+        );
+        
+        $this->createIndex(
+            'idx-group_roles-controller',
+            'group_roles',
+            'controller'
         );
     }
 
